@@ -1,17 +1,24 @@
 {
   "name": "attendence-service",
   "version": "1.0.0",
+<<<<<<< HEAD
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "concurrently \"tsc -w\" \"nodemon dist/server.js\""
+=======
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> 808500ead14b325b92923908df2f4f759a17dc06
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+<<<<<<< HEAD
   "description": "",
   "devDependencies": {
     "@types/amqplib": "^0.10.8",
@@ -38,4 +45,7 @@
     "uuid": "^13.0.0",
     "zod": "^4.1.12"
   }
+=======
+  "description": ""
+>>>>>>> 808500ead14b325b92923908df2f4f759a17dc06
 }

@@ -13,3 +13,9 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 808500ead14b325b92923908df2f4f759a17dc06
