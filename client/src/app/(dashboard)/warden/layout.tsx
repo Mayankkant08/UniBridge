@@ -6,7 +6,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   title: "UniBridge",
-  description: "Taecher Dashboard",
+  description: "Student Dashboard",
 };
 
 export default function RootLayout({
