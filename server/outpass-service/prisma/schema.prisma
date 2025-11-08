@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Outpass {
+  id              String        @id @default(uuid())
+  studentId       String
+  type            OutpassType
+  reason          String
+  fromDate        DateTime
+  toDate          DateTime
+  proofDocument   String?       // File path for leave outpass proof
+  
+  // Status tracking
+  status          OutpassStatus @default(PENDING)
+  
+  // Multi-level approval
+  parentApproval  ApprovalStatus @default(PENDING)
+  parentApprovedAt DateTime?
+  parentApprovedBy String?
+  parentRejectionReason String?
+  
+  wardenApproval  ApprovalStatus @default(PENDING)
+  wardenApprovedAt DateTime?
+  wardenApprovedBy String?
+  wardenRejectionReason String?
+  
+  // Timestamps
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  
+  // Cancellation
+  canceledAt      DateTime?
+  canceledBy      String?
+  cancellationReason String?
+
+  @@index([studentId])
+  @@index([status])
+  @@index([fromDate, toDate])
+  @@map("outpasses")
+}
+
+enum OutpassType {
+  DAY_OUTPASS      // 6 AM to 7 PM same day
+  LEAVE_OUTPASS    // Multi-day leave with proof
+}
+
+enum OutpassStatus {
+  PENDING          // Initial state
+  PARENT_APPROVED  // Parent approved, waiting for warden
+  APPROVED         // Both approved - IsActive
+  REJECTED         // Either parent or warden rejected - Failed
+  CANCELED         // Student canceled
+  ONGOING          // Currently active (between fromDate and toDate)
+  EXPIRED          // Past toDate
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
