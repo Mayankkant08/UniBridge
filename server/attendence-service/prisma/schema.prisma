@@ -1,0 +1,101 @@
+// // This is your Prisma schema file,
+// // learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// generator client {
+//   provider = "prisma-client"
+//   output   = "../generated/prisma"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// model QRSession {
+//   id          String      @id @default(uuid())
+//   teacherId   String
+//   courseId    String
+//   token       String      @unique
+//   expiresAt   DateTime
+//   isActive    Boolean     @default(true)
+//   createdAt   DateTime    @default(now())
+
+//   attendances Attendance[]
+
+//   @@index([token])
+//   @@index([expiresAt])
+//   @@index([teacherId, courseId])
+//   @@unique([teacherId, courseId, isActive])
+// }
+
+// model Attendance {
+//   id          String      @id @default(uuid())
+//   studentId   String
+//   courseId    String
+//   teacherId   String
+//   qrSessionId String
+//   timestamp   DateTime    @default(now())
+//   status      String      @default("ABSENT")
+
+//   qrSession   QRSession   @relation(fields: [qrSessionId], references: [id], onDelete: Cascade)
+
+//   @@unique([studentId, qrSessionId])
+//   @@index([studentId])
+//   @@index([courseId])
+//   @@index([timestamp])
+// }
+
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Attendance {
+  id            String           @id @default(uuid())
+  studentId     String
+  courseId      String
+  classDate     DateTime         @default(now())
+  status        AttendanceStatus @default(ABSENT)
+  markedAt      DateTime?
+  qrTokenId     String?
+  teacherId     String
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  @@unique([studentId, courseId, classDate])
+  @@index([studentId])
+  @@index([courseId])
+  @@index([classDate])
+  @@map("attendances")
+}
+
+model QRToken {
+  id         String   @id @default(uuid())
+  teacherId  String
+  courseId   String
+  token      String   @unique
+  signature  String
+  expiresAt  DateTime
+  isActive   Boolean  @default(true)
+  usageCount Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  @@index([token])
+  @@index([expiresAt])
+  @@map("qr_tokens")
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+}

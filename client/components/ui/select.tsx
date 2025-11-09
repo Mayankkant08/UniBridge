@@ -4,7 +4,11 @@ import * as React from "react"
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 
+<<<<<<< HEAD
+import { cn } from "@/lib/utils"
+=======
 import { cn } from "../../lib/utils"
+>>>>>>> 808500ead14b325b92923908df2f4f759a17dc06
 
 function Select({
   ...props

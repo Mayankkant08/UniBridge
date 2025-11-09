@@ -1,13 +1,65 @@
 {
   "name": "outpass-service",
   "version": "1.0.0",
+<<<<<<< HEAD
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "concurrently \"tsc -w\" \"nodemon dist/server.js\""
+=======
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> 808500ead14b325b92923908df2f4f759a17dc06
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+<<<<<<< HEAD
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "prisma": "^6.19.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.0",
+    "@types/amqplib": "^0.10.8",
+    "@types/concurrently": "^6.4.0",
+    "amqplib": "^0.10.9",
+    "c12": "^3.1.0",
+    "chokidar": "^4.0.3",
+    "citty": "^0.1.6",
+    "concurrently": "^9.2.1",
+    "confbox": "^0.2.2",
+    "consola": "^3.4.2",
+    "deepmerge-ts": "^7.1.5",
+    "defu": "^6.1.4",
+    "destr": "^2.0.5",
+    "dotenv": "^16.6.1",
+    "effect": "^3.18.4",
+    "empathic": "^2.0.0",
+    "exsolve": "^1.0.7",
+    "fast-check": "^3.23.2",
+    "giget": "^2.0.0",
+    "jiti": "^2.6.1",
+    "node-fetch-native": "^1.6.7",
+    "nypm": "^0.6.2",
+    "ohash": "^2.0.11",
+    "pathe": "^2.0.3",
+    "perfect-debounce": "^1.0.0",
+    "pkg-types": "^2.3.0",
+    "pure-rand": "^6.1.0",
+    "rc9": "^2.1.2",
+    "readdirp": "^4.1.2",
+    "tinyexec": "^1.0.2",
+    "typescript": "^5.9.3",
+    "zod": "^4.1.12"
+  }
+=======
   "description": ""
+>>>>>>> 808500ead14b325b92923908df2f4f759a17dc06
 }

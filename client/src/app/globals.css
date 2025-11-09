@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+@import "tailwindcss";
+=======
 /* @import "tailwindcss";
+>>>>>>> 808500ead14b325b92923908df2f4f759a17dc06
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -32,6 +36,9 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+<<<<<<< HEAD
+}
+=======
 } */
 
 
@@ -190,3 +197,4 @@ body {
     @apply bg-background text-foreground;
   }
 }
+>>>>>>> 808500ead14b325b92923908df2f4f759a17dc06
